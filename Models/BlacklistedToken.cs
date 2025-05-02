@@ -15,29 +15,3 @@ namespace INVISIO.Models
     }
 }
 
-/*
- * << Sessions >>
- * Id 
- * userId
- * Expity
- * 
- * << User >>
- * Id
- * FullName
- * Email
- * PasswordHash
- * 
- * << UserLoginDto >>
- * Email
- * Password
- * 
- * << UserSignupDto >>
- * FullName
- * Email
- * Password
- * 
- * << BlacklistedToken >>
- * Id
- * Token
- * Expiry
- */

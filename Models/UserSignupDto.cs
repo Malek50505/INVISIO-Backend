@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations; // what is system, what is componentModels, what is DataAnnotations, what are thier functionalites in my code
+﻿using System.ComponentModel.DataAnnotations; 
 
 namespace INVISIO.Models
 {
     public class UserSignupDto
     {
-        [Required] // what does this mean
+        [Required] 
         public string FullName { get; set; }
 
         [Required, EmailAddress]
