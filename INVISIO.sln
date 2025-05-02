@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INVISIO", "INVISIO.csproj", "{297DFB7A-B482-488A-A9CB-D317A5C99C6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{297DFB7A-B482-488A-A9CB-D317A5C99C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{297DFB7A-B482-488A-A9CB-D317A5C99C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{297DFB7A-B482-488A-A9CB-D317A5C99C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{297DFB7A-B482-488A-A9CB-D317A5C99C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {369B16F4-BC0D-43DA-8F04-1D3275429B46}
+	EndGlobalSection
+EndGlobal
