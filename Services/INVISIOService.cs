@@ -1,8 +1,8 @@
-﻿using INVISIO.Models; 
+﻿using INVISIO.Models;
 using BCrypt.Net;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using MongoDB.Driver; 
+using MongoDB.Driver;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -21,8 +21,7 @@ namespace INVISIO.Services
             _config = config;
         }
 
-        // Register a new user
-        public async Task<User?> RegisterUserAsync(string fullName, string email, string password)
+        public async Task<User?> RegisterUserAsync(string fullName, string email, string password, string companyName)
         {
             var existingUser = await _users.Find(u => u.Email == email).FirstOrDefaultAsync();
             if (existingUser != null)
@@ -33,7 +32,8 @@ namespace INVISIO.Services
             {
                 FullName = fullName,
                 Email = email,
-                PasswordHash = passwordHash
+                PasswordHash = passwordHash,
+                CompanyName = companyName 
             };
 
             await _users.InsertOneAsync(user);
@@ -41,14 +41,13 @@ namespace INVISIO.Services
         }
 
 
-        // Authenticate user and generate JWT token
         public async Task<string> AuthenticateAsync(string email, string password)
         {
             var user = await _users.Find(u => u.Email == email).FirstOrDefaultAsync();
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
-                return null; // Invalid credentials
+                return null; 
             }
 
             return GenerateJwtToken(user);
@@ -61,7 +60,8 @@ namespace INVISIO.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim("CompanyName", user.CompanyName)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

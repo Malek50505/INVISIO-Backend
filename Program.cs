@@ -28,16 +28,16 @@ builder.Services.AddControllers()
         };
     });
 
-// MongoDB
 builder.Services.AddSingleton<IMongoClient, MongoClient>(
     _ => new MongoClient(builder.Configuration["MongoDB:ConnectionString"])
 );
 
-// Custom services
 builder.Services.AddSingleton<INVISIOService>();
 builder.Services.AddSingleton<BlacklistService>();
+builder.Services.AddSingleton<SuggestionsService>(); 
+builder.Services.AddSingleton<FavoriteService>();    
 
-// JWT Authentication
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -54,7 +54,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             )
         };
 
-        // Handle invalid JWT format globally
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
@@ -80,7 +79,6 @@ app.UseMiddleware<TokenBlacklistMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Global handler for malformed JSON request bodies
 app.Use(async (context, next) =>
 {
     try

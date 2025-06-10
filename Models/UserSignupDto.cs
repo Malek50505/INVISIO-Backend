@@ -12,5 +12,9 @@ namespace INVISIO.Models
 
         [Required, MinLength(6)]
         public string Password { get; set; }
+
+        [Required]
+        public string CompanyName { get; set; }
+
     }
 }

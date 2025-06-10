@@ -1,6 +1,7 @@
 ﻿using INVISIO.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using Microsoft.AspNetCore.Authorization; 
 
 namespace INVISIO.Controllers
 {
@@ -17,6 +18,7 @@ namespace INVISIO.Controllers
         }
 
         [HttpPost("submit")]
+        [Authorize] 
         public async Task<IActionResult> SubmitNews([FromBody] List<NewsItem> newsItems)
         {
             if (newsItems == null || !newsItems.Any())
