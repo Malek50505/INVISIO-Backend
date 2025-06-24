@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations; 
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace INVISIO.Models
 {
     public class UserSignupDto
     {
-        [Required] 
+        [Required]
         public string FullName { get; set; }
 
         [Required, EmailAddress]

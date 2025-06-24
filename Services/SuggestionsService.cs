@@ -1,5 +1,4 @@
-﻿// Services/SuggestionsService.cs
-using INVISIO.Models;
+﻿using INVISIO.Models;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -22,11 +21,9 @@ namespace INVISIO.Services
         public async Task<Suggestion> GetSuggestionByIdAsync(string id) =>
             await _suggestions.Find(s => s.Id == id).FirstOrDefaultAsync();
 
-        // Updated for no pagination
         public async Task<List<Suggestion>> GetPublicSuggestionsAsync() =>
             await _suggestions.Find(s => s.IsPublic).ToListAsync();
 
-        // Method to get archived suggestions for a specific user (UPDATED FOR NO PAGINATION)
         public async Task<List<Suggestion>> GetArchivedSuggestionsAsync(string userId) =>
             await _suggestions.Find(s => s.UserId == userId && s.IsArchived).ToListAsync();
 

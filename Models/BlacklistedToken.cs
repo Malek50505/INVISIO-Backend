@@ -14,4 +14,3 @@ namespace INVISIO.Models
         public DateTime Expiry { get; set; }
     }
 }
-

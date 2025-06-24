@@ -9,6 +9,11 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient("OllamaClient", client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(300); // timeout  5 minutes
+});
+
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -19,7 +24,6 @@ builder.Services.AddControllers()
                 .SelectMany(v => v.Errors)
                 .Select(e => e.ErrorMessage)
                 .FirstOrDefault();
-
             return new BadRequestObjectResult(new
             {
                 code = 4001,
@@ -34,9 +38,8 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(
 
 builder.Services.AddSingleton<INVISIOService>();
 builder.Services.AddSingleton<BlacklistService>();
-builder.Services.AddSingleton<SuggestionsService>(); 
-builder.Services.AddSingleton<FavoriteService>();    
-
+builder.Services.AddSingleton<SuggestionsService>();
+builder.Services.AddSingleton<FavoriteService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -53,7 +56,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])
             )
         };
-
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
@@ -99,4 +101,5 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+
 app.Run();

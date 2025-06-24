@@ -1,5 +1,4 @@
-﻿// Controllers/SuggestionsController.cs
-using INVISIO.Models;
+﻿using INVISIO.Models;
 using INVISIO.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

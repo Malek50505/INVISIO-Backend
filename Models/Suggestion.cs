@@ -6,7 +6,7 @@ namespace INVISIO.Models
 {
     public class Suggestion
     {
-        [BsonId] 
+        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
@@ -17,8 +17,8 @@ namespace INVISIO.Models
 
         public string UserId { get; set; }
 
-        public bool IsPublic { get; set; } = false; 
+        public bool IsPublic { get; set; } = false;
 
-        public bool IsArchived { get; set; } = false; 
+        public bool IsArchived { get; set; } = false;
     }
 }

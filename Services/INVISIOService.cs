@@ -33,7 +33,7 @@ namespace INVISIO.Services
                 FullName = fullName,
                 Email = email,
                 PasswordHash = passwordHash,
-                CompanyName = companyName 
+                CompanyName = companyName
             };
 
             await _users.InsertOneAsync(user);
@@ -47,7 +47,7 @@ namespace INVISIO.Services
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
-                return null; 
+                return null;
             }
 
             return GenerateJwtToken(user);

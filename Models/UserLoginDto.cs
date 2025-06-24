@@ -11,4 +11,3 @@ namespace INVISIO.Models
         public string Password { get; set; }
     }
 }
-

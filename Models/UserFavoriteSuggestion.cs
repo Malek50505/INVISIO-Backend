@@ -7,12 +7,12 @@ namespace INVISIO.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } 
+        public string Id { get; set; }
 
-        [BsonElement("userId")] 
+        [BsonElement("userId")]
         public string UserId { get; set; }
 
-        [BsonElement("suggestionId")] 
+        [BsonElement("suggestionId")]
         public string SuggestionId { get; set; }
     }
 }

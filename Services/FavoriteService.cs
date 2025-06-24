@@ -1,5 +1,4 @@
-﻿// Services/FavoriteService.cs
-using INVISIO.Models;
+﻿using INVISIO.Models;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -54,7 +53,6 @@ namespace INVISIO.Services
             return existingFavorite != null;
         }
 
-        // Updated for no pagination
         public async Task<List<Suggestion>> GetFavoriteSuggestionsForUserAsync(string userId)
         {
             var favoriteSuggestionIds = await _userFavorites.Find(f => f.UserId == userId)
@@ -66,7 +64,6 @@ namespace INVISIO.Services
                 return new List<Suggestion>();
             }
 
-            // Removed Skip and Limit for no pagination
             return await _suggestions.Find(s => favoriteSuggestionIds.Contains(s.Id))
                                      .ToListAsync();
         }

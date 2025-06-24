@@ -23,7 +23,7 @@ namespace INVISIO.Controllers
         public async Task<IActionResult> Signup([FromBody] UserSignupDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(); 
+                return BadRequest();
 
             var user = await _authService.RegisterUserAsync(dto.FullName, dto.Email, dto.Password, dto.CompanyName);
 
@@ -42,7 +42,7 @@ namespace INVISIO.Controllers
         public async Task<IActionResult> Login([FromBody] UserLoginDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(); 
+                return BadRequest();
 
             var token = await _authService.AuthenticateAsync(dto.Email, dto.Password);
             if (token == null)
@@ -69,7 +69,7 @@ namespace INVISIO.Controllers
             return Ok(new { code = 2000, message = "Logged out successfully." });
         }
 
-        [HttpGet("getMe")] 
+        [HttpGet("getMe")]
         [Authorize]
         public IActionResult GetProfile()
         {
@@ -88,7 +88,7 @@ namespace INVISIO.Controllers
                     id = userId,
                     email,
                     fullName,
-                    companyName 
+                    companyName
                 }
             });
         }
